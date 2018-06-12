@@ -26,8 +26,10 @@ CODE;
 
 $code .= '  namespace {'.str_replace("\n", '', getCode(new SplFileInfo(dirname(__DIR__).'/src/Lodash.php'))).' }';
 
+$code .= getCode(new SplFileInfo(dirname(__DIR__).'/src/internal/unicode.php'));
+
 foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator(dirname(__DIR__).'/src', RecursiveDirectoryIterator::SKIP_DOTS)) as $file) {
-    if (in_array($file->getBasename(), ['bootstrap.php', 'lodash.php', 'compiled.php', 'Lodash.php'], true)) {
+    if (in_array($file->getBasename(), ['unicode.php', 'bootstrap.php', 'lodash.php', 'compiled.php', 'Lodash.php'], true)) {
         continue;
     }
 
